@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title th:text="${roll == guess ? 'Yay!' : 'Boo!'}"></title>
+</head>
+<body>
+
+<h1 th:text="|Your guess: ${guess}|"></h1>
+<h1 th:text="|The roll: ${roll}|"></h1>
+
+<h3 th:if="${roll == guess}">You guessed correctly!</h3>
+
+</body>
+</html>

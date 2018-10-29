@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Roll the Dice</title>
+</head>
+<body>
+
+<h1>Pick a number</h1>
+<th:block th:each="num : ${new Integer[6]{1,2,3,4,5,6}}">
+    <a th:href="@{|/roll-dice/${num}|}" th:text="${num}" />
+</th:block>
+
+</body>
+</html>
