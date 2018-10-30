@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/fragments :: head (title='Posts')" />
+<body>
+
+<nav th:replace="partials/fragments :: navbar" />
+
+<div class="container mt-5">
+
+<!-- Card -->
+<div class="card mb-2" th:each="post : ${posts}">
+
+    <!-- Card content -->
+    <div class="card-body">
+
+        <!-- Title -->
+        <h4 class="card-title"><a th:text="${post.title}"></a></h4>
+        <!-- Text -->
+        <p class="card-text" th:text="${post.body}"></p>
+
+    </div>
+
+</div>
+<!-- Card -->
+
+</div>
+
+<footer th:replace="partials/fragments :: footer" />
+
+<th:block th:fragment="partials/fragments :: bootstrapScripts" />
+
+</body>
+</html>

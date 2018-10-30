@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8"/>
-    <title th:text="${roll == guess ? 'Yay!' : 'Boo!'}"></title>
-</head>
+<head th:replace="partials/fragments :: head (title='Test')" />
 <body>
+
+<nav th:replace="partials/fragments :: navbar" />
 
 <h1 th:text="|Your guess: ${guess}|"></h1>
 <h1 th:text="|The roll: ${roll}|"></h1>
 
 <h3 th:if="${roll == guess}">You guessed correctly!</h3>
+
+<footer th:replace="partials/fragments :: footer" />
+
+<th:block th:fragment="partials/fragments :: bootstrapScripts" />
 
 </body>
 </html>
