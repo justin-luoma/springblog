@@ -1,14 +1,11 @@
-package com.codeup.springblog;
+package com.codeup.springblog.controllers;
 
 import com.codeup.springblog.dao.model.Post;
 import com.codeup.springblog.service.PostService;
 import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -31,18 +28,29 @@ public class PostController {
     @GetMapping("/posts/{id}")
     public String postPage(@PathVariable long id, Model model) {
         model.addAttribute("post", postService.findOne(id));
-        return "posts/show";
+        return "/posts/show";
     }
 
     @GetMapping("/posts/create")
-    @ResponseBody
-    public String createPage() {
-        return "view the form for creating a post" ;
+    public String createPage(Model model) {
+        model.addAttribute("post", new Post());
+        return "/posts/create";
+    }
+
+    @GetMapping("/posts/{id}/edit")
+    public String editPage(@PathVariable long id, Model model) {
+        model.addAttribute("post", postService.findOne(id));
+        return "/posts/create";
     }
 
     @PostMapping("/posts/create")
-    @ResponseBody
-    public String create() {
-        return "create a new post";
+    public String create(@ModelAttribute Post post) {
+        Long id = post.getId();
+        if (id == null) {
+            id = (long)postService.findAll().size() + 1;
+            post.setId(id);
+        }
+        postService.save(post);
+        return "redirect:/posts/" + id;
     }
 }

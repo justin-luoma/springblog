@@ -3,6 +3,7 @@ package com.codeup.springblog.service;
 import com.codeup.springblog.dao.model.Post;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -27,14 +28,18 @@ public class PostService {
     }
 
     public void save(Post post) {
-        this.posts.add(post);
+        if(post.getId() > this.posts.size()) {
+            this.posts.add(post);
+        } else {
+            this.posts.remove((int)(post.getId() - 1));
+            this.posts.add(post);
+        }
     }
 
     private void createPosts() {
-        this.posts = Arrays.asList(
-                new Post("Post #1", "Content for post 1"),
-                new Post("Post #2", "Content for post 2"),
-                new Post("Post #3", "Content for post 3")
-        );
+        this.posts = new ArrayList<>(3);
+        this.posts.add(new Post(1, "Post #1", "Content for post 1"));
+        this.posts.add(new Post(2, "Post #2", "Content for post 2"));
+        this.posts.add(new Post(3, "Post #3", "Content for post 3"));
     }
 }
