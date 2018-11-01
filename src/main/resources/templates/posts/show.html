@@ -17,6 +17,11 @@
             <!-- Text -->
             <p class="card-text" th:text="${post.body}"></p>
 
+            <form action="#" th:action="@{/posts/delete}" method="post">
+                <input type="number" name="id" th:value="${post.id}" hidden="" />
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+
         </div>
 
     </div>

@@ -1,17 +1,22 @@
 package com.codeup.springblog.dao.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "posts")
 public class Post {
+
+    @Id
+    @GeneratedValue
     private Long id;
+
+    @Column
     private String title;
+
+    @Column
     private String body;
 
     public Post() {
-    }
-
-    public Post(long id, String title, String body) {
-        this.id = id;
-        this.title = title;
-        this.body = body;
     }
 
     public Post(String title, String body) {
