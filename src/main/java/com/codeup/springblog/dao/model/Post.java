@@ -10,18 +10,22 @@ public class Post {
     @GeneratedValue
     private Long id;
 
-    @Column
+    @Column(nullable = false, length = 50)
     private String title;
 
-    @Column
+    @Column(nullable = false, length = 5000)
     private String body;
+
+    @OneToOne
+    private User user;
 
     public Post() {
     }
 
-    public Post(String title, String body) {
+    public Post(String title, String body, User user) {
         this.title = title;
         this.body = body;
+        this.user = user;
     }
 
     public Long getId() {
@@ -46,5 +50,13 @@ public class Post {
 
     public void setBody(String body) {
         this.body = body;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
