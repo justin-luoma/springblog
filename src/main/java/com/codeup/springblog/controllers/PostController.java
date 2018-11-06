@@ -26,25 +26,25 @@ public class PostController {
     public String postsPage(Model model) {
         model.addAttribute("posts", postRepo.findAll());
 
-        return "/posts/index";
+        return "posts/index";
     }
 
     @GetMapping("/posts/{id}")
     public String postPage(@PathVariable long id, Model model) {
         model.addAttribute("post", postRepo.findOne(id));
-        return "/posts/show";
+        return "posts/show";
     }
 
     @GetMapping("/posts/create")
     public String createPage(Model model) {
         model.addAttribute("post", new Post());
-        return "/posts/create";
+        return "posts/create";
     }
 
     @GetMapping("/posts/{id}/edit")
     public String editPage(@PathVariable long id, Model model) {
         model.addAttribute("post", postRepo.findOne(id));
-        return "/posts/create";
+        return "posts/create";
     }
 
     @PostMapping("/posts/create")
