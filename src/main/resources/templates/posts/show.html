@@ -8,22 +8,20 @@
 <div class="container mt-5">
 
     <div class="card">
+        <h4 class="card-header d-flex justify-content-between">
+            <a th:text="${post.title}"></a>
+            <span th:text="${post.user.email}">Created by: </span>
+        </h4>
 
         <!-- Card content -->
         <div class="card-body">
-
-            <!-- Title -->
-            <h4 class="card-title"><a th:text="${post.title}"></a></h4>
             <!-- Text -->
             <p class="card-text" th:text="${post.body}"></p>
 
-            <div class="card-footer p-0 d-flex justify-content-between">
-                <span th:text="${post.user.email}">Created by: </span>
-                <form action="#" th:action="@{/posts/delete}" method="post">
-                    <input type="number" name="id" th:value="${post.id}" hidden="" />
-                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                </form>
-            </div>
+            <form action="#" th:action="@{/posts/delete}" method="post">
+                <input type="number" name="id" th:value="${post.id}" hidden="" />
+                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+            </form>
 
         </div>
 

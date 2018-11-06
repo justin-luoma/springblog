@@ -9,18 +9,18 @@
 
 <!-- Card -->
 <div class="card mb-2" th:each="post : ${posts}">
+    <h4 class="card-header"><a th:text="${post.title}"></a></h4>
 
     <!-- Card content -->
     <div class="card-body">
 
         <!-- Title -->
-        <h4 class="card-title"><a th:text="${post.title}"></a></h4>
         <!-- Text -->
         <p class="card-text" th:text="${post.body}"></p>
 
         <form action="#" th:action="@{/posts/delete}" method="post">
             <input type="number" name="id" th:value="${post.id}" hidden="" />
-            <button type="submit" class="btn btn-danger">Delete</button>
+            <button type="submit" class="btn btn-sm btn-danger">Delete</button>
         </form>
     </div>
 

@@ -1,6 +1,7 @@
 package com.codeup.springblog.dao.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -19,20 +20,19 @@ public class User {
     @Column(nullable = false, length = 98)
     private String password;
 
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private List<Post> posts;
+
     public User() {
     }
 
-    public User(String username, String email, String password) {
+    public User(String username, String email, String password,
+                List<Post> posts) {
         this.username = username;
         this.email = email;
         this.password = password;
-    }
-
-    public User(User copy) {
-        this.id = copy.id;
-        this.username = copy.username;
-        this.email = copy.email;
-        this.password = copy.password;
+        this.posts = posts;
     }
 
     public long getId() {
@@ -65,5 +65,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<Post> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
     }
 }
