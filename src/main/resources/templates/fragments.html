@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:fragment="head (title)">
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title th:text="${title}"></title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
+    <link th:href="@{/css/materialize.min.css}" rel="stylesheet" />
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
+</head>
+<body>
+
+<th:block  th:fragment="nav">
+    <nav class="nav-extended">
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo">Spring Blog</a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="/">Home</a></li>
+                <li><a href="/posts">Posts</a></li>
+                <li><a href="/login">Login</a></li>
+                <li><a href="/register">Register</a></li>
+            </ul>
+        </div>
+        <div class="nav-content hide" id="nav-tabs">
+            <ul class="tabs tabs-transparent">
+                <li class="tab"><a href="/posts/create">Create a new post</a></li>
+                <!--<li class="tab"><a class="active" href="#test2">Test 2</a></li>-->
+                <!--<li class="tab disabled"><a href="#test3">Disabled Tab</a></li>-->
+                <!--<li class="tab"><a href="#test4">Test 4</a></li>-->
+            </ul>
+        </div>
+    </nav>
+
+    <ul class="sidenav" id="mobile-demo">
+        <li><a href="sass.html">Sass</a></li>
+        <li><a href="badges.html">Components</a></li>
+        <li><a href="collapsible.html">JavaScript</a></li>
+    </ul>
+</th:block>
+
+        <!--<ul class="navbar-nav ml-auto">-->
+            <!--<li class="nav-item" sec:authorize="isAnonymous()">-->
+                <!--<a href="/login" class="nav-link">Login</a>-->
+            <!--</li>-->
+            <!--<li class="nav-item" sec:authorize="isAuthenticated()">-->
+                <!--<a href="#" id="logout" class="nav-link">Logout</a>-->
+            <!--</li>-->
+        <!--</ul>-->
+    <!--<form th:method="post" th:action="@{/logout}" sec:authorize="isAuthenticated()" id="logoutForm">-->
+
+    <!--</form>-->
+    <!--<script sec:authorize="isAuthenticated()">-->
+        <!--document.getElementById("logout").addEventListener("click", () => {-->
+            <!--const form = document.getElementById("logoutForm");-->
+            <!--form.submit();-->
+        <!--});-->
+    <!--</script>-->
+
+<!-- Footer -->
+<footer class="page-footer orange" th:fragment="footer">
+        <!--<div class="container">-->
+            <!--<div class="row">-->
+                <!--<div class="col l6 s12">-->
+                    <!--<h5 class="white-text">Company Bio</h5>-->
+                    <!--<p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>-->
+
+
+                <!--</div>-->
+                <!--<div class="col l3 s12">-->
+                    <!--<h5 class="white-text">Settings</h5>-->
+                    <!--<ul>-->
+                        <!--<li><a class="white-text" href="#!">Link 1</a></li>-->
+                        <!--<li><a class="white-text" href="#!">Link 2</a></li>-->
+                        <!--<li><a class="white-text" href="#!">Link 3</a></li>-->
+                        <!--<li><a class="white-text" href="#!">Link 4</a></li>-->
+                    <!--</ul>-->
+                <!--</div>-->
+                <!--<div class="col l3 s12">-->
+                    <!--<h5 class="white-text">Connect</h5>-->
+                    <!--<ul>-->
+                        <!--<li><a class="white-text" href="#!">Link 1</a></li>-->
+                        <!--<li><a class="white-text" href="#!">Link 2</a></li>-->
+                        <!--<li><a class="white-text" href="#!">Link 3</a></li>-->
+                        <!--<li><a class="white-text" href="#!">Link 4</a></li>-->
+                    <!--</ul>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+        <div class="footer-copyright">
+            <div class="container">
+                <p>© 2018 Copyright: Justin Luoma</p>
+            </div>
+        </div>
+</footer>
+<!-- Footer -->
+
+<th:block th:fragment="mScripts">
+    <script th:src="@{/js/materialize.min.js}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('.sidenav');
+            var instances = M.Sidenav.init(elems);
+
+            const navTabs = document.getElementById("nav-tabs");
+            if(window.location.href.split("/").includes("posts")) {
+                navTabs.classList.remove("hide");
+            } else {
+                navTabs.classList.add("hide");
+            }
+        });
+    </script>
+</th:block>
+
+</body>
+</html>
